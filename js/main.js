@@ -1,0 +1,2 @@
+// Real example of words from a terminal
+var wordArray = ["fanatic", "discuss", "natural", "fertile", "dealing", "recruit", "blasted", "bedroom", "records", "regular", "defense", "ceiling", "becomes", "durable", "beliefs"];
