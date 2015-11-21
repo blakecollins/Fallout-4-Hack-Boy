@@ -1,2 +1,4 @@
 // Real example of words from a terminal
-var wordArray = ["fanatic", "discuss", "natural", "fertile", "dealing", "recruit", "blasted", "bedroom", "records", "regular", "defense", "ceiling", "becomes", "durable", "beliefs"];
+// The answer is "shot"
+var wordArray = ["shot", "hurt", "sell", "give", "sure", "gear", "sent", "fire", "glow", "week", "ones", "sick"];
+
