@@ -20,6 +20,31 @@ body {
   background: radial-gradient(rgb(85, 125, 89), rgb(24, 46, 26));
 }
 
+p {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+small { font-size: 80%; }
+
+.hide {
+  display: none;
+  visibility: hidden;
+}
+
+.container {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.col { display: table-cell; }
+
 .gradient {
   position: absolute;
   top: 0;
@@ -62,7 +87,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("https://www.transparenttextures.com/patterns/graphy.png");
+  background-image: url("../graphy.png");
   opacity: .4;
 }
 
@@ -101,14 +126,14 @@ body {
   padding: 0 30px;
 }
 
-h1 {
+.page-title h1 {
   margin: 0;
   position: relative;
   top: -60px;
   font-size: 42px;
   padding: 0 30px;
 }
-h1:before {
+.page-title h1:before {
   content: "";
   position: absolute;
   top: 30px;
@@ -117,7 +142,7 @@ h1:before {
   height: 2px;
   border-top: 2px solid #1aff00;
 }
-h1:after {
+.page-title h1:after {
   content: "";
   position: absolute;
   top: 30px;
@@ -127,7 +152,31 @@ h1:after {
   border-top: 2px solid #1aff00;
 }
 
-.enter-data {
+.entry-container {
+  position: relative;
+  padding-bottom: 21px;
+  min-height: 21px;
+  max-height: 100%;
+  overflow: hidden;
+}
+
+.entry-container .entries {
+  position: relative;;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 21px);
+  overflow: hidden;
+}
+
+.entry-container form {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.entry-container form .enter-data {
   padding: 0 2px;
   width: 0;
   height: 20px;
@@ -148,7 +197,7 @@ h1:after {
   100% { opacity: 0; }
 }
 
-.cursor {
+.entry-container form .cursor {
   display: inline-block;
   width: 10px;
   height: 20px;
@@ -159,43 +208,6 @@ h1:after {
   animation-direction: alternate;
   vertical-align: top;
 }
-
-.entry-container {
-  position: relative;
-  padding-bottom: 21px;
-  min-height: 21px;
-  max-height: 100%;
-  overflow: hidden;
-}
-
-.entries {
-  position: relative;;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: calc(100% - 21px);
-  overflow: hidden;
-}
-
-form {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-}
-
-p {
-  margin-top: 0;
-  margin-bottom: 10px;
-}
-
-.container {
-  display: table;
-  width: 100%;
-  table-layout: fixed;
-}
-
-.col { display: table-cell; }
 
 .results {
   margin: 0 auto;
@@ -218,9 +230,10 @@ p {
 
 .results-additional { font-size: 20px; }
 
-.hide {
-  display: none;
-  visibility: hidden;
+.footer {
+  position: absolute;
+  z-index: 2;
+  bottom: 0;
 }
 
 @media (max-width: 640px) {
@@ -234,13 +247,9 @@ p {
     width: 100%;
   }
 
-  .entry-container {
-    margin-bottom: 10px;
-  }
+  .entry-container {margin-bottom: 10px; }
 
   .pipboy { display: none; }
 
-  .results {
-    width: 100%;
-  }
+  .results { width: 100%; }
 }

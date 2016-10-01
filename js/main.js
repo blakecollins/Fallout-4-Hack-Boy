@@ -1,7 +1,24 @@
 $(document).ready(function() {
-  // Real example of words from a terminal
-  // The answer is "shot"
   var wordArray = [];
+  var limit = window.innerWidth > 1024 ? 14 : window.innerWidth > 640 ? 7 : 4;
+
+  $(window).resize(function() {
+    limit = window.innerWidth > 1024 ? 14 : window.innerWidth > 640 ? 7 : 4;
+    length = $('[data-hb-entries]').find('p').length;
+
+    if(length > limit) {
+      for(var i = 0; i < (length - limit); i++) {
+        $('[data-hb-entries]').find('p').first().addClass('hide');
+      }
+    } else {
+      for(var i = 0; i < (limit - length); i++) {
+        var safe = $('[data-hb-entries]').find('p:not(.hide)').first();
+        if(safe.prev().length > 0) {
+          safe.prev().removeClass('hide');
+        }
+      }
+    }
+  });
 
   var getHeighestWeighted = function(obj) {
     var char = '';
@@ -88,19 +105,24 @@ $(document).ready(function() {
 
   $('[data-hb-form]').submit(function(e) {
     e.preventDefault();
+
     var word = $(this).find('input').val();
-    wordArray.push(word);
+    if(wordArray.indexOf(word) < 0) {
+      wordArray.push(word);
+    }
+
     var probabilities = getProbabilities(wordArray);
     $(this).find('input').val('');
-    var limit = window.innerWidth > 1024 ? 14 : window.innerWidth > 640 ? 7 : 4;
+
     if($('[data-hb-entries]').find('p').length > limit) {
-      $('[data-hb-entries]').find('p').first().remove();
+      $('[data-hb-entries]').find('p').first().addClass('hide');
     }
     $('[data-hb-entries]').append(`<p>${word}</p>`);
 
     for(var i = 0; i < probabilities.length; i++) {
       var w = probabilities[i].word;
       var p = (probabilities[i].probability * 100).toFixed(2);
+
       $(`[data-hb-results] .result-${i}`).html(`${w} <span>${p}%</span>`);
       $('[data-hb-results]').removeClass('hide');
     }
