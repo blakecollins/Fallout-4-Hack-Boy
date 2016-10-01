@@ -1,20 +1,7 @@
 $(document).ready(function() {
   // Real example of words from a terminal
   // The answer is "shot"
-  var wordArray = [
-    "shot",
-    "hurt",
-    "sell",
-    "give",
-    "sure",
-    "gear",
-    "sent",
-    "fire",
-    "glow",
-    "week",
-    "ones",
-    "sick"
-  ];
+  var wordArray = [];
 
   var getHeighestWeighted = function(obj) {
     var char = '';
@@ -99,7 +86,23 @@ $(document).ready(function() {
     return sortByKey(wordPercentageRelationship, 'probability').reverse();
   };
 
-  var p = getProbabilities(wordArray);
+  $('[data-hb-form]').submit(function(e) {
+    e.preventDefault();
+    var word = $(this).find('input').val();
+    wordArray.push(word);
+    var probabilities = getProbabilities(wordArray);
+    $(this).find('input').val('');
+    var limit = window.innerWidth > 1024 ? 14 : window.innerWidth > 640 ? 7 : 4;
+    if($('[data-hb-entries]').find('p').length > limit) {
+      $('[data-hb-entries]').find('p').first().remove();
+    }
+    $('[data-hb-entries]').append(`<p>${word}</p>`);
 
-  console.log(p);
+    for(var i = 0; i < probabilities.length; i++) {
+      var w = probabilities[i].word;
+      var p = (probabilities[i].probability * 100).toFixed(2);
+      $(`[data-hb-results] .result-${i}`).html(`${w} <span>${p}%</span>`);
+      $('[data-hb-results]').removeClass('hide');
+    }
+  });
 });
