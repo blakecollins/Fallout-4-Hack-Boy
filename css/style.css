@@ -70,12 +70,12 @@ body {
   position: absolute;
   top: 30px;
   left: 30px;
-  width: calc(100% - 60px);
+  width: calc(100% - 75px);
   height: calc(100% - 75px);
   background-image: url("../pipboy.png");
   background-position: bottom right;
   background-repeat: no-repeat;
-  background-size: auto 35%;
+  background-size: auto 40%;
 }
 
 .main {
